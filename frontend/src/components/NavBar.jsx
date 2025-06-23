@@ -1,20 +1,53 @@
 import { Box, Button, Container, Flex, HStack, Stack, Text } from "@chakra-ui/react"
-import { BsPlusSquare, BsPlusSquareDotted } from "react-icons/bs"
+import { BsPlusSquareFill, BsPlusSquareDotted } from "react-icons/bs"
+import { LuMoon, LuSun } from "react-icons/lu"
+// import {PlusSquareIcon} from "@chakra-ui/icons"
 import { Link } from "react-router"
+import { useColorMode } from "./ui/color-mode"
 
 const NavBar = () => {
+    const { colorMode, toggleColorMode } = useColorMode()
+
     return (
-        <Box>
-            <Container maxW="container.xl" p={4} bg="blue.500" color="white">
-                <Flex justify="space-between" align="center">
-                    <Text fontSize="xl" fontWeight="bold">MyApp</Text>
-                    <HStack spacing={4}>
-                        <Link to="/create"><BsPlusSquareDotted /></Link>
-                        <Button colorScheme="teal" variant="solid">Create Page</Button>
-                    </HStack>
-                </Flex>
-            </Container>
-        </Box>
+        <Container maxW={"1140px"} px={4}>
+            <Flex
+                h={"6"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                flexDir={{
+                    base: "column",
+                    sm: "row"
+                }}
+            >
+                <Text
+                    fontSize={{
+                        base: "22",
+                        sm: "28"
+                    }}
+                    fontWeight={"bold"}
+                    textTransform={'uppercase'}
+                    textAlign={"center"}
+                    bgGradient={"linear(to-r, cyan.400, blue.500)"}
+                    bgClip={"text"}
+                >
+                    <Link to={"/"}>Product Store 🛒</Link>
+                </Text>
+                <HStack spacing={2} alignItems={"center"}>
+                    <Link to="/create">
+                        <Button>
+                            <BsPlusSquareFill boxSize={5} />
+                        </Button>
+                    </Link>
+                    <Button onClick={toggleColorMode}>
+                        {colorMode === "light" ? (
+                            <LuMoon boxSize={5} />
+                        ) : (
+                            <LuSun boxSize={5} />
+                        )}
+                    </Button>
+                </HStack>
+            </Flex>
+        </Container>
     )
 }
 
