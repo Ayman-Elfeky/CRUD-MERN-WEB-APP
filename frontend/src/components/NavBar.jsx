@@ -3,7 +3,7 @@ import { BsPlusSquareFill, BsPlusSquareDotted } from "react-icons/bs"
 import { LuMoon, LuSun } from "react-icons/lu"
 // import {PlusSquareIcon} from "@chakra-ui/icons"
 import { Link } from "react-router"
-import { useColorMode } from "./ui/color-mode"
+import { useColorMode, useColorModeValue} from "./ui/color-mode"
 
 const NavBar = () => {
     const { colorMode, toggleColorMode } = useColorMode()
