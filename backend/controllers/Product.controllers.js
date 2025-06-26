@@ -25,7 +25,7 @@ const createProduct = async (req, res) => {
     try {
         await newProduct.save();
         console.log("A new product has been added successfully:", newProduct)
-        res.status(201).json({success: true, message: `A new Product has added successfully` })
+        res.status(201).json({success: true, message: `A new Product has added successfully`, data: newProduct })
     } catch (error) {
         console.log("Error in add the product: ", error.message)
         return res.status(500).json({success: false, message: 'Server Error'})
