@@ -9,7 +9,7 @@ const NavBar = () => {
     const { colorMode, toggleColorMode } = useColorMode()
 
     return (
-        <Container maxW={"1140px"} px={4}>
+        <Container maxW={"1140px"} p={4}>
             <Flex
                 h={"6"}
                 alignItems={"center"}
@@ -28,7 +28,7 @@ const NavBar = () => {
                     textTransform={'uppercase'}
                     textAlign={"center"}
                     bgGradient={"linear(to-r, cyan.400, blue.500)"}
-                    bgClip={"text"}
+                    // bgClip='text'
                 >
                     <Link to={"/"}>Product Store 🛒</Link>
                 </Text>

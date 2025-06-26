@@ -2,9 +2,10 @@ import NavBar from "./components/NavBar"
 import HomePage from "./pages/HomePage"
 import CreatePage from "./pages/CreatePage"
 import { Route, Routes } from "react-router"
-import Footer from "./components/Footer"
+// import Footer from "./components/Footer"
 import { useColorModeValue } from "./components/ui/color-mode"
 import { Box } from "@chakra-ui/react"
+import {Toaster} from '@/components/ui/toaster'
 
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/create" element={<CreatePage />} />
     </Routes>
-    <Footer />
+    <Toaster />
+    {/* <Footer /> */}
     </Box>
   )
 }

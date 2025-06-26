@@ -1,3 +1,4 @@
+import ProductCart from '@/components/ProductCart';
 import { useProductStore } from '@/store/product';
 import { Container, VStack, Text, SimpleGrid, Image, Box, Heading } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
@@ -37,26 +38,9 @@ const HomePage = () => {
                         spacing={10}
                         w={'full'}
                     >
-                        {products.map((product, index) => {
+                        {products.map((product) => {
                             return (
-                                <Box key={index}
-                                    bg="white"
-                                    p={4}
-                                    rounded="lg"
-                                    shadow="md"
-                                    borderWidth="1px">
-                                    <Image src={product.image}
-                                        alt={`${product.name} Image`}
-                                        w="full"
-                                        h="200px"
-                                        objectFit="cover"
-                                        rounded="md"
-                                        mb={3} />
-                                    <Heading size="md" mb={2}>{product.name}</Heading>
-                                    <Text fontSize="xl" fontWeight="bold" color="green.500">
-                                        ${product.price}
-                                    </Text>
-                                </Box>
+                                <ProductCart key={product._id} product={product}/>
                             )
                         })}
                     </SimpleGrid>
