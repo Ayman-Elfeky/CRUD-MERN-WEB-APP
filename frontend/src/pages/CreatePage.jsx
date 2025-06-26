@@ -1,5 +1,8 @@
 import { useColorModeValue } from "@/components/ui/color-mode";
-import { Input, VStack, Container, Heading, Box} from "@chakra-ui/react";
+import { toaster } from "@/components/ui/toaster";
+import { useProductStore } from "@/store/product";
+import { Input, VStack, Container, Heading, Box, Button, useToastStyles } from "@chakra-ui/react";
+// import { tableAnatomy } from "@chakra-ui/react/anatomy";
 import { useState } from "react";
 
 function CreatePage() {
@@ -8,8 +11,33 @@ function CreatePage() {
         price: "",
         image: ""
     })
+
+    // const toast = useToastStyles();
+
+    const { createProduct } = useProductStore()
+
+    const handleAddProduct = async () => {
+        const { success, message } = await createProduct(newProduct)
+        if(!success) {
+            console.log("False Toaster")
+            toaster.create({
+                title: "Error",
+                description: message,
+                status: "error"
+            })
+        } else {
+            console.log("True Toaster")
+            toaster.create({
+                title: "success",
+                description: message,
+                status: "successfull"
+            })
+        }
+        console.log("Success: ", success, "\nMessage: ", message)
+    }
+
     return (
-        <Container>
+        <Container maxW={"container.sm"}>
             <VStack
                 spacing={8}
             >
@@ -37,6 +65,15 @@ function CreatePage() {
                             value={newProduct.price}
                             onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
                         />
+                        <Input
+                            placeholder="Image Url"
+                            name="Image"
+                            value={newProduct.image}
+                            onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
+                        />
+                        <Button colorScheme={"blue"} onClick={handleAddProduct} w={'full'}>
+                            Add Product
+                        </Button>
                     </VStack>
                 </Box>
             </VStack>
